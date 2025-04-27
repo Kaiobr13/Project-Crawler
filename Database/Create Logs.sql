@@ -1,3 +1,9 @@
+create user 'mqtt_app'@'localhost' identified by 'MQtt1234!';
+
+grant select, insert, update, delete on crawler_iot.* to 'mqtt_app'@'localhost';
+
+flush privileges;
+
 create table devices(
 	device_id int not null auto_increment primary key,
     device_name varchar (255),										-- vehicle/sensor

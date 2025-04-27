@@ -18,10 +18,14 @@
   },
   "homepage": "https://github.com/Kaiobr13/Project-Crawler#readme",
   "dependencies": {
+    "2": "^3.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mqtt": "^5.10.4",
-    "mysql2": "^3.14.0"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.10",
+    "sbo": "^1.1.2"
   }
 }
