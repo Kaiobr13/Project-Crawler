@@ -6,7 +6,8 @@ flush privileges;
 
 create table devices(
 	device_id int not null auto_increment primary key,
-    device_name varchar (255),										-- vehicle/sensor
+    device_name varchar (255),
+    device_type ENUM ('vehicle', 'sensor'),										-- vehicle/sensor
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -16,7 +17,7 @@ create table activity_log(
     speed float,													-- in km/h or m/s
     distance float,													-- in meters or km
     duration_seconds int,											-- time spent on the track
-    weight_kg float,												-- weigth carried in kg
+    weight_g float,												    -- weigth carried in g
     topic varchar(255),												-- MQTT topic
     raw_payload TEXT,												-- original MQTT message (maybe used for debug)
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

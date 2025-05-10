@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const database = require('../infraestrutura/database');
+const database = require('../infraestrutura/conexao');
 
 router.get('/teste', (req, res) => {
     database.getConnection((err, connection) => {
