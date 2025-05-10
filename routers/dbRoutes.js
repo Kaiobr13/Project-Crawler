@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../infraestrutura/conexao');
 
-router.get('/teste', (req, res) => {
+router.get('/database', (req, res) => {
     database.getConnection((err, connection) => {
         if (err) {
             console.error('Erro ao pegar conexão do pool:', err);
