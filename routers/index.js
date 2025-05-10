@@ -1,4 +1,4 @@
-    const routerLogs = require("./logsRoutes");
+    const routerLogs = require("./devicesRoutes");
     const dbRoutes = require("./dbRoutes"); 
 
     module.exports = (app) => {

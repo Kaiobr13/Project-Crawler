@@ -23,7 +23,7 @@ class tabelas {
             console.log(error.message);
             return;
         }
-        console.log("Tabela de dispositivos criada com sucesso");
+        console.log("Tabela de dispositivos já criada/criada com sucesso");
     });
   }
 
@@ -48,7 +48,7 @@ class tabelas {
             console.log(error.message);
             return;
         }
-        console.log("Tabela de atividades criada com sucesso");
+        console.log("Tabela de atividades já criada/criada com sucesso");
     })
   }
 
@@ -70,7 +70,7 @@ class tabelas {
             console.log(error.message);
             return;
         }
-        console.log("Tabela de sensores criada com sucesso");
+        console.log("Tabela de sensores já criada/criada com sucesso");
     });
   }
   criarLogs(){
@@ -89,7 +89,7 @@ class tabelas {
             console.log(error.message);
             return;
         }
-        console.log("Tabela de logs criada com sucesso");
+        console.log("Tabela de logs já criada/criada com sucesso");
     });
   }
 }
