@@ -17,7 +17,7 @@ create table activity_log(
     speed float,													-- in km/h or m/s
     distance float,													-- in meters or km
     duration_seconds int,											-- time spent on the track
-    weight_g float,												    -- weigth carried in g
+    weight_g int,												    -- weigth carried in g
     topic varchar(255),												-- MQTT topic
     raw_payload TEXT,												-- original MQTT message (maybe used for debug)
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

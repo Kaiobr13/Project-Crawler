@@ -18,12 +18,12 @@ class tabelas {
     `;
 
     this.conexao.query(sql, (error) => {
-        if(error){
-            console.log("Erro ao criar tabela de dispositivos");
-            console.log(error.message);
-            return;
-        }
-        console.log("Tabela de dispositivos já criada/criada com sucesso");
+      if (error) {
+        console.log("Erro ao criar tabela de dispositivos");
+        console.log(error.message);
+        return;
+      }
+      console.log("Tabela de dispositivos já criada/criada com sucesso");
     });
   }
 
@@ -43,16 +43,16 @@ class tabelas {
     `;
 
     this.conexao.query(sql, (error) => {
-        if(error){
-            console.log("Erro ao criar tabela de atividades");
-            console.log(error.message);
-            return;
-        }
-        console.log("Tabela de atividades já criada/criada com sucesso");
-    })
+      if (error) {
+        console.log("Erro ao criar tabela de atividades");
+        console.log(error.message);
+        return;
+      }
+      console.log("Tabela de atividades já criada/criada com sucesso");
+    });
   }
 
-  criarSensores(){
+  criarSensores() {
     const sql = `
         create table if not exists sensor_data (
         sd_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -65,15 +65,15 @@ class tabelas {
     `;
 
     this.conexao.query(sql, (error) => {
-        if(error){
-            console.log("Erro ao criar tabela de sensores");
-            console.log(error.message);
-            return;
-        }
-        console.log("Tabela de sensores já criada/criada com sucesso");
+      if (error) {
+        console.log("Erro ao criar tabela de sensores");
+        console.log(error.message);
+        return;
+      }
+      console.log("Tabela de sensores já criada/criada com sucesso");
     });
   }
-  criarLogs(){
+  criarLogs() {
     const sql = `
         create table if not exists mqtt_connection_log (
         conlog_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,12 +84,12 @@ class tabelas {
     `;
 
     this.conexao.query(sql, (error) => {
-        if(error){
-            console.log("Erro ao criar tabela de logs");
-            console.log(error.message);
-            return;
-        }
-        console.log("Tabela de logs já criada/criada com sucesso");
+      if (error) {
+        console.log("Erro ao criar tabela de logs");
+        console.log(error.message);
+        return;
+      }
+      console.log("Tabela de logs já criada/criada com sucesso");
     });
   }
 }

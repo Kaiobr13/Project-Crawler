@@ -1,0 +1,3 @@
+sudo service mysql start
+mysql -uroot -p
+mysql -u mqtt_app -p -h localhost crawler_iot
