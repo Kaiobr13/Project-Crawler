@@ -1,4 +1,6 @@
 const express = require('express');
+const app = express();
+const port =  3000;
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mqtt = require('mqtt');
@@ -8,11 +10,8 @@ const tabelas = require('./infraestrutura/tabelas');
 require("dotenv").config();
 
 tabelas.init(conexao);
-
-const app = express();
-const port =  3000;
+router(app, express);
 app.use(cors());
-router(app);
 
 app.listen(port, (error) => {
     if (error) {

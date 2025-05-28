@@ -1,12 +1,13 @@
+const deviceModel = require("../models/devicesModels");
 class deviceController {
   buscar() {
-    return "Buscando dispositivos...";
+    return deviceModel.listar();
   }
-  criar() {
-    return "Criando dispositivo...";
+  criar(newDevice) {
+    return deviceModel.criar(newDevice);
   }
-  alterar(id) {
-    return "Alterando dispositivo número " + id + "...";
+  atualizar(updatedDevice, id) {
+    return deviceModel.atualizar(updatedDevice, id);
   }
   deletar(id) {
     return "Apagando dispositivo número " + id + "...";

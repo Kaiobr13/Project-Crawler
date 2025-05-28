@@ -1,7 +1,9 @@
-const routerLogs = require("./devicesRoutes");
+const routerDEVLogs = require("./devicesRoutes");
 const dbRoutes = require("./dbRoutes");
 
-module.exports = (app) => {
-  app.use("/log", routerLogs);
-  app.use("/db", dbRoutes);
+module.exports = (app, express) => {
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use("/devlogs", routerDEVLogs);
+  app.use("/DBlogs", dbRoutes);
 };
