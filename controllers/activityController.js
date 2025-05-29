@@ -1,12 +1,12 @@
-const activityModel = require("../models/activityModel");
+const activityModel = require("../models/activityModels");
 
 class activityController {
   show() {
     return activityModel.show();
   }
-  //create() {
-  //  return activityModel.create();
-  //}
+  create() {
+    return activityModel.create();
+  }
   update(updatedActivity, id) {
     return activityModel.update(updatedActivity, id);
   }

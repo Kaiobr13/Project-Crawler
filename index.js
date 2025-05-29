@@ -13,6 +13,8 @@ tabelas.init(conexao);
 router(app, express);
 app.use(cors());
 
+require('./routers/mqttReceiver');
+
 app.listen(port, (error) => {
     if (error) {
         console.log("Deu erro.");

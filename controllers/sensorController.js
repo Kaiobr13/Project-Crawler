@@ -1,16 +1,16 @@
 const sensorModel = require("../models/sensorModels")
 class sensorController {
   show() {
-    return "Buscando sensores...";
+    return sensorModel.show();
   }
-  create() {
-    return "Criando sensor...";
-  }
-  update(id) {
-    return "Alterando sensor número " + id + "...";
+  //create(newSensor) {
+  //  return sensorModel.create(newSensor);
+  //}
+  update(updatedSensor, id) {
+    return sensorModel.update(updatedSensor, id);
   }
   delete(id) {
-    return "Apagando sensor número " + id + "...";
+    return sensorModel.delete(id);
   }
 }
 

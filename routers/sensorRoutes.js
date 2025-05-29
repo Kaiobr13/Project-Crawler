@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const routes = Router();
-const sensorDataController = require("../controllers/sensorDataController");
+const sensorDataController = require("../controllers/sensorController");
 
 routes.get("/Sensorlogs", (req, res) => {
   sensorDataController.show()

@@ -9,13 +9,13 @@ routes.get("/activityLogs", (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 });
 
-//routes.post("/activityLogs", (req, res) => {
-//  const newActivity = req.body;
-//  const activity = activityController.criar(newActivity);
-//  activity
-//    .then((activityCreated) => res.status(201).json(activityCreated))
-//    .catch((error) => res.status(400).json(error.message));
-//});
+routes.post("/activityLogs", (req, res) => {
+  const newActivity = req.body;
+  const activity = activityController.criar(newActivity);
+  activity
+    .then((activityCreated) => res.status(201).json(activityCreated))
+    .catch((error) => res.status(400).json(error.message));
+});
 
 routes.put("/activityLog/:id", (req, res) => {
   const { id } = req.params;

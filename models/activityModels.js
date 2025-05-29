@@ -1,6 +1,6 @@
 const conexao = require("../infraestrutura/conexao");
 class activityModel {
-  listar() {
+  show() {
     const sql = "select * from activity_log";
     return new Promise((resolve, reject) => {
       conexao.query(sql, {}, (error, answer) => {
@@ -14,34 +14,36 @@ class activityModel {
     });
   }
 
-  //criar(newActivity) {
-  //  const sql = `
-  //    INSERT INTO activity_log (
-  //      device_id, speed, distance, duration_seconds,
-  //      weight_g, topic, raw_payload
-  //    ) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-  //
-  //  const valores = [
-  //      new
-  //  ];
-  //
-  //  return new Promise((resolve, reject) => {
-  //    conexao.query(
-  //      sql,
-  //      [],
-  //      (error, answer) => {
-  //        if (error) {
-  //          console.log("Erro ao criar dispositivo.");
-  //          reject(error);
-  //        }
-  //        console.log("Dispositivo criado com sucesso.");
-  //        resolve(answer);
-  //      }
-  //    );
-  //  });
-  //}
-  //
-  atualizar(updatedActivity, id) {
+ create(newActivity) {
+  const sql = `
+    INSERT INTO activity_log (
+      device_id, speed, distance, duration_seconds,
+      weight_g, topic, raw_payload
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+  const valores = [
+    newActivity.device_id,
+    newActivity.speed,
+    newActivity.distance,
+    newActivity.duration_seconds,
+    newActivity.weight_g,
+    newActivity.topic,
+    newActivity.raw_payload
+  ];
+
+  return new Promise((resolve, reject) => {
+    conexao.query(sql, valores, (error, answer) => {
+      if (error) {
+        console.log("Erro ao criar registro de atividade.");
+        reject(error);
+      }
+      console.log("Registro de atividade criado com sucesso.");
+      resolve(answer);
+    });
+  });
+}
+
+  update(updatedActivity, id) {
     const sql = `
     UPDATE activity_log SET
       device_id = ?, speed = ?, distance = ?, duration_seconds = ?,
@@ -71,7 +73,7 @@ class activityModel {
     });
   }
 
-  deletar(id) {
+  delete(id) {
     const sql = "delete from devices where device_id =?";
     return new Promise((resolve, reject) => {
       conexao.query(sql, [id], (error, answer) => {
