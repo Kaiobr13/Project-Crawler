@@ -1,15 +1,17 @@
+const activityModel = require("../models/activityModel");
+
 class activityController {
-  buscar() {
-    return "Buscando atividades...";
+  show() {
+    return activityModel.show();
   }
-  criar() {
-    return "Criando atividade...";
+  //create() {
+  //  return activityModel.create();
+  //}
+  update(updatedActivity, id) {
+    return activityModel.update(updatedActivity, id);
   }
-  alterar(id) {
-    return "Alterando atividade número " + id + "...";
-  }
-  deletar(id) {
-    return "Apagando atividade número " + id + "...";
+  delete(id) {
+    return activityModel.delete;
   }
 }
 

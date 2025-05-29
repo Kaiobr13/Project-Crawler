@@ -1,7 +1,7 @@
 const conexao = require("../infraestrutura/conexao");
-class DeviceModel {
+class SensorModel {
   show() {
-    const sql = "select * from devices";
+    const sql = "select * from sensor_data";
     return new Promise((resolve, reject) => {
       conexao.query(sql, {}, (error, answer) => {
         if (error) {
@@ -14,37 +14,34 @@ class DeviceModel {
     });
   }
 
-  create(newDevice) {
-    const sql = "insert into devices (device_name, device_type) values (?, ?)";
-    return new Promise((resolve, reject) => {
-      conexao.query(
-        sql,
-        [newDevice.device_name, newDevice.device_type],
-        (error, answer) => {
-          if (error) {
-            console.log("Error at creating the device.");
-            reject(error);
-          }
-          console.log("Device created successfully.");
-          resolve(answer);
-        }
-      );
-    });
-  }
+  //create(newSensor) {
+  // const sql = "insert into sensor_data set";
+  // return new Promise((resolve, reject) => {
+  //   conexao.query(sql, newSensor,(error, answer) => {
+  //       if (error) {
+  //         console.log("Error at creating the data from the sensor.");
+  //         reject(error);
+  //       }
+  //       console.log("Data created successfully.");
+  //       resolve(answer);
+  //     }
+  //   );
+  // });
+  //
 
-  update(updatedDevice, id) {
+  update(updatedData, id) {
     const sql =
-      "update devices set device_name = ?, device_type = ? where device_id = ?";
+      "update sensor_data set device_name = ?, device_type = ? where device_id = ?";
     return new Promise((resolve, reject) => {
       conexao.query(
         sql,
         [updatedDevice.device_name, updatedDevice.device_type, id],
         (error, answer) => {
           if (error) {
-            console.log("Error at updating the chosen device.");
+            console.log("Error at updating the chosen data.");
             reject(error);
           }
-          console.log("Device updated successfully.");
+          console.log("Data updated successfully.");
           resolve(answer);
         }
       );
@@ -56,14 +53,14 @@ class DeviceModel {
     return new Promise((resolve, reject) => {
       conexao.query(sql, [id], (error, answer)=>{
         if (error){
-          console.log("Error at deleting the chosen device.");
+          console.log("Error at deleting the chosen data.");
           reject(error);
         }
-        console.log("Device deleted successfully.");
+        console.log("Data deleted successfully.");
         resolve(answer);
       });
     });
   }
 }
 
-module.exports = new DeviceModel();
+module.exports = new SensorModel();
