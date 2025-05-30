@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detalhes das Atividades</title>
+  <script src="detailsActivity.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-4 font-sans">
+
+  <h1 class="text-4xl font-bold text-center text-indigo-400 mb-8">Logs de Atividade</h1>
+
+  <div class="overflow-x-auto bg-gray-800 p-6 rounded-2xl shadow-xl">
+    <table class="table-auto w-full text-left">
+      <thead>
+        <tr class="text-indigo-300">
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Device ID</th>
+          <th class="px-4 py-2">Velocidade</th>
+          <th class="px-4 py-2">Distância</th>
+          <th class="px-4 py-2">Duração</th>
+          <th class="px-4 py-2">Peso (g)</th>
+          <th class="px-4 py-2">Tópico</th>
+          <th class="px-4 py-2">Payload</th>
+          <th class="px-4 py-2">Data</th>
+        </tr>
+      </thead>
+      <tbody id="detalhes-tabela">
+        <!-- Dados inseridos via JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <a href="dashboard.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">Voltar</a>
+  </div>
+
+</body>
+</html>

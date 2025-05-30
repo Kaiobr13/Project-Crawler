@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RC Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen p-4 font-sans">
+    <div class="max-w-6xl mx-auto space-y-8">
+      <!-- Título principal -->
+    <div class="text-center mt-8">
+  <h1 class="text-6xl font-extrabold text-indigo-400 tracking-widest">
+    CRAWLER
+  </h1>
+
+  <a href="activity.html"
+     class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition">
+    Ver os logs de atividade
+  </a>
+  <a href="sensor.html"
+     class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition">
+    Ver os dados dos sensores
+  </a>
+    <a href="devices.html"
+     class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition">
+    Ver os dados dos dispositivos
+  </a>
+</div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- CONTROLOS DO VEÍCULO -->
+        <div class="col-span-1 bg-gray-800 rounded-2xl p-6 shadow-xl">
+          <div id="main-controls">
+            <h2 class="text-2xl font-bold mb-4">Controlo Principal</h2>
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <button
+                class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-xl text-lg"
+                onclick="sendCommand('LEFT')"
+              >
+                ⬅
+              </button>
+              <button
+                class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-xl text-lg"
+                onclick="sendCommand('RIGHT')"
+              >
+                ➡
+              </button>
+            </div>
+            <div class="flex flex-col items-center space-y-4 mt-4">
+              <p class="text-lg">Acelerador</p>
+              <div
+                class="relative h-52 w-16 bg-gray-700 rounded-full flex items-end overflow-hidden"
+              >
+                <div
+                  id="analogLevel"
+                  class="bg-indigo-500 w-full rounded-b-full transition-all duration-200"
+                  style="height: 50%"
+                ></div>
+                <input
+                  type="range"
+                  id="analogSpeed"
+                  min="0"
+                  max="100"
+                  value="50"
+                  step="10"
+                  orient="vertical"
+                  style="writing-mode: bt-lr; transform: rotate(270deg)"
+                  oninput="updateSpeed(this.value)"
+                  onmouseup="resetSpeed()"
+                  ontouchend="resetSpeed()"
+                  class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer appearance-none"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTROLOS SECUNDÁRIOS -->
+         
+        <div
+          class="col-span-1 bg-gray-800 rounded-2xl p-6 shadow-xl flex flex-col items-center"
+        >
+          <h2 class="text-2xl font-bold mb-6">Secundário</h2>
+          <div class="flex flex-col items-center space-y-6">
+            <button
+              class="bg-red-500 hover:bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+              onclick="sendCommand('BUZZER')"
+            >
+              🔊
+            </button>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+              onclick="sendCommand('LIGHTS')"
+            >
+              💡
+            </button>
+            <button
+              class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+              onclick="sendCommand('MUSIC')"
+            >
+              🎵
+            </button>
+            <button
+              class="bg-gray-500 hover:bg-gray-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+              onclick="sendCommand('STOP_ALL')"
+            >
+              🛑
+            </button>
+          </div>
+        </div>
+
+        <!-- ESTATÍSTICAS -->
+        <div class="bg-gray-800 rounded-2xl p-6 shadow-xl w-full">
+          <h2 class="text-2xl font-bold mb-4">Estatísticas</h2>
+          <div class="grid grid-cols-2 gap-4 text-center text-lg">
+            <div class="col-span-2">
+              <svg id="speedometer" viewBox="0 0 200 100" class="w-full h-32">
+                <defs>
+                  <linearGradient
+                    id="speedGradient"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="0"
+                  >
+                    <stop offset="60%" stop-color="lime" />
+                    <stop offset="80%" stop-color="orange" />
+                    <stop offset="100%" stop-color="red" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M10,90 A90,90 0 0,1 190,90"
+                  stroke="url(#speedGradient)"
+                  stroke-width="15"
+                  fill="none"
+                />
+                <line
+                  id="needle"
+                  x1="100"
+                  y1="90"
+                  x2="100"
+                  y2="30"
+                  stroke="white"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  transform="rotate(0,100,90)"
+                />
+              </svg>
+            </div>
+            <div class="bg-gray-700 rounded-xl p-4">
+              <p class="text-gray-400">ESC Temp</p>
+              <p class="text-2xl font-bold" id="tempESC">-- °C</p>
+            </div>
+            <div class="bg-gray-700 rounded-xl p-4">
+              <p class="text-gray-400">Bateria</p>
+              <p class="text-2xl font-bold" id="bateria">-- V</p>
+            </div>
+            <div class="bg-gray-700 rounded-xl p-4">
+              <p class="text-gray-400">Humidade</p>
+              <p class="text-2xl font-bold" id="humidade">-- %</p>
+            </div>
+            <div class="bg-gray-700 rounded-xl p-4">
+              <p class="text-gray-400">Velocidade</p>
+              <p class="text-2xl font-bold" id="velocidade">-- km/h</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOGS -->
+        <div
+          class="bg-gray-800 rounded-2xl p-6 shadow-xl flex flex-col mt-8 w-full"
+        >
+          <h2 class="text-2xl font-bold mb-4">Logs</h2>
+          <ul id="logs" class="text-sm space-y-1 overflow-y-auto max-h-64"></ul>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      function sendCommand(cmd) {
+        logEvent(`Comando enviado: ${cmd}`);
+      }
+
+      function updateSpeed(value) {
+        document.getElementById("analogLevel").style.height = `${value}%`;
+        sendCommand(`SPEED_${value}`);
+        const angle = (value / 100) * 180 - 90;
+        document
+          .getElementById("needle")
+          .setAttribute("transform", `rotate(${angle},100,90)`);
+      }
+
+      function resetSpeed() {
+        document.getElementById("analogSpeed").value = 0;
+        updateSpeed(0);
+      }
+
+      function logEvent(text) {
+        const logs = document.getElementById("logs");
+        const li = document.createElement("li");
+        li.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+        logs.prepend(li);
+      }
+
+      function showTab(tabId, event) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById(tabId).classList.remove("hidden");
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("border-indigo-400"));
+        event.target.classList.add("border-indigo-400");
+      }
+    </script>
+  </body>
+</html>
